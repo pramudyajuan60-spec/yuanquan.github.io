@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#050806">
+  <meta name="description" content="Juan — developer, creator, builder.">
+  <title>JUAN.OS — Personal System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <section class="boot" id="boot" aria-label="System entry">
+    <div class="boot-inner">
+      <div class="eyebrow"><span class="pulse"></span> JUAN.OS <span class="muted">// PRIVATE SYSTEM</span></div>
+      <div class="boot-lines" id="bootLines" aria-live="polite"></div>
+      <button class="enter-button" id="enterButton"><span>[ ENTER SYSTEM ]</span><b>↵</b></button>
+      <div class="boot-foot"><span>IDENTITY: JUAN</span><span id="bootClock">LOCAL SESSION</span></div>
+    </div>
+  </section>
+
+  <header class="topbar">
+    <a class="wordmark" href="#home">JUAN<span>.OS</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#about">ABOUT</a><a href="#projects">PROJECTS</a><a href="#game">ACCESS</a><a href="#contact">CONTACT</a>
+    </nav>
+    <button class="sound-toggle" id="soundToggle" aria-pressed="false"><span class="sound-dot"></span><span id="soundLabel">SOUND OFF</span></button>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-photo" role="img" aria-label="Juan portrait"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <div class="eyebrow"><span class="pulse"></span> IDENTITY / 001 <span class="muted">— SYSTEM ONLINE</span></div>
+        <p class="intro-line" id="introLine">MY NAME IS</p>
+        <h1 class="hero-name" id="heroName" aria-label="Juan">JUAN<span class="cursor">_</span></h1>
+        <p class="hero-role">DEVELOPER <i>/</i> CREATOR <i>/</i> BUILDER</p>
+        <p class="hero-copy">A little bit of code. A lot of imagination.</p>
+        <a class="text-link" href="#about">EXPLORE THE SYSTEM <span>↓</span></a>
+      </div>
+      <div class="hero-index">JKT / ID<br>00.01</div>
+      <div class="scanline" aria-hidden="true"></div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="section-head"><span>01 / WHOAMI</span><span class="section-rule"></span><span>IDENTITY</span></div>
+      <div class="about-grid">
+        <h2>Not just<br><span>another profile.</span></h2>
+        <div class="terminal-card">
+          <div class="terminal-bar"><span><i></i><i></i><i></i></span><span>juan@system:~</span><span>● ONLINE</span></div>
+          <div class="terminal-body">
+            <p><b>juan@system:~$</b> whoami</p>
+            <dl><dt>Name</dt><dd>Juan</dd><dt>Role</dt><dd>Developer / Creator</dd><dt>Location</dt><dd>Indonesia</dd><dt>Interests</dt><dd>Web & game development</dd><dt>Status</dt><dd class="green">Building something.</dd></dl>
+            <p class="terminal-note">Curious by default. Building by choice.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="section-head"><span>02 / REPOSITORIES</span><span class="section-rule"></span><span>SELECTED WORK</span></div>
+      <div class="project-row">
+        <div class="project-number">PROJECT_001</div>
+        <div class="project-main"><h2>ONE Bad World</h2><p>A game world shaped by territories, characters, and player-driven conflict.</p><div class="tags"><span>GAME DEVELOPMENT</span><span>WORLD BUILDING</span><span>IN PROGRESS</span></div></div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-row">
+        <div class="project-number">PROJECT_002</div>
+        <div class="project-main"><h2>More soon<span class="cursor small">_</span></h2><p>Another idea is compiling in the background.</p><div class="tags"><span>EXPERIMENTAL</span><span>WIP</span></div></div>
+        <div class="project-arrow">↗</div>
+      </div>
+    </section>
+
+    <section class="section capabilities" id="capabilities">
+      <div class="section-head"><span>03 / CAPABILITIES</span><span class="section-rule"></span><span>MODULES</span></div>
+      <div class="cap-grid">
+        <div><span class="cap-index">01</span><h3>WEB</h3><p>Interfaces & experiences</p></div>
+        <div><span class="cap-index">02</span><h3>GAME</h3><p>Worlds & interactions</p></div>
+        <div><span class="cap-index">03</span><h3>IDEAS</h3><p>From concept to build</p></div>
+      </div>
+      <p class="small-note">Specific tools and technologies can be added here as your stack is finalized.</p>
+    </section>
+
+    <section class="section game-section" id="game">
+      <div class="section-head"><span>04 / ACCESS</span><span class="section-rule"></span><span>INTERACTIVE MODULE</span></div>
+      <div class="game-layout">
+        <div class="game-copy"><p class="eyebrow green">OPTIONAL SIDE QUEST</p><h2>HACK THE<br>SYSTEM<span class="green">.</span></h2><p>Decode the access phrase. Clear three levels to reveal a hidden message.</p><div class="game-meta"><span>3 LEVELS</span><span>NO TIME LIMIT</span><span>LOCAL ONLY</span></div></div>
+        <div class="game-terminal">
+          <div class="terminal-bar"><span><i></i><i></i><i></i></span><span>security_module.exe</span><span id="levelLabel">LEVEL 01 / 03</span></div>
+          <div class="terminal-body game-body">
+            <div class="game-status"><span id="gameStatus">LOCKED DIRECTORY</span><span id="attemptLabel">ATTEMPTS 0/5</span></div>
+            <p class="game-prompt" id="gamePrompt">Find the system owner's first name.</p>
+            <div class="code-slots" id="codeSlots" aria-label="Access code">_ _ _ _</div>
+            <label class="sr-only" for="codeInput">Enter access code</label>
+            <div class="input-row"><span>&gt;</span><input id="codeInput" maxlength="16" autocomplete="off" spellcheck="false" placeholder="type code..." /><button id="submitCode">RUN ↵</button></div>
+            <p class="game-feedback" id="gameFeedback" aria-live="polite">Awaiting input...</p>
+            <div class="game-controls"><button class="plain-button" id="hintButton">[ HINT ]</button><button class="plain-button" id="resetGame">[ RESET ]</button><button class="plain-button" id="nextLevel" hidden>[ NEXT LEVEL → ]</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="section-head"><span>05 / CONNECT</span><span class="section-rule"></span><span>OPEN CHANNEL</span></div>
+      <h2>Have something<br>in mind<span class="green">?</span></h2>
+      <p>Find me on GitHub or start a conversation.</p>
+      <div class="contact-links"><a href="https://github.com/" target="_blank" rel="noreferrer">GITHUB ↗</a><a href="mailto:hello@example.com">EMAIL ↗</a></div>
+    </section>
+  </main>
+
+  <footer><span>JUAN.OS <span class="green">/</span> END OF SESSION</span><span>CODE · CREATE · IMPROVE <span class="green">█</span></span></footer>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+const boot=document.getElementById("boot");
+const bootLines=document.getElementById("bootLines");
+const lines=["<b>&gt;</b> Initializing kernel... <b>OK</b>","<b>&gt;</b> Loading user profile... <b>OK</b>","<b>&gt;</b> Identity detected: JUAN","<b>&gt;</b> Awaiting user input."];
+lines.forEach((line,i)=>setTimeout(()=>{const row=document.createElement("span");row.innerHTML=line;bootLines.appendChild(row)},180+i*260));
+document.getElementById("enterButton").addEventListener("click",()=>{boot.classList.add("done");document.body.classList.add("entered");setTimeout(()=>{const name=document.getElementById("heroName");name.classList.add("glitch");setTimeout(()=>name.classList.remove("glitch"),650)},420)});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&!boot.classList.contains("done")&&document.activeElement.tagName!=="INPUT")document.getElementById("enterButton").click()});
+
+// Optional ambient tone generated locally after explicit user activation.
+let audioCtx=null,oscillators=[],gain=null;
+const soundToggle=document.getElementById("soundToggle"),soundLabel=document.getElementById("soundLabel");
+soundToggle.addEventListener("click",async()=>{if(!audioCtx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=new AC();gain=audioCtx.createGain();gain.gain.value=0;gain.connect(audioCtx.destination);[55,82.41,110].forEach((freq,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=i===1?"sine":"triangle";o.frequency.value=freq;g.gain.value=i===0?.12:.035;o.connect(g);g.connect(gain);o.start();oscillators.push(o)});}await audioCtx.resume();const on=soundToggle.getAttribute("aria-pressed")!=="true";soundToggle.setAttribute("aria-pressed",String(on));soundLabel.textContent=on?"SOUND ON":"SOUND OFF";gain.gain.setTargetAtTime(on?.16:0,audioCtx.currentTime,.35)});
+
+// Terminal puzzle: deliberately local, no network or credential collection.
+const levels=[
+ {answer:"JUAN",hint:"The first name of the system owner.",prompt:"Find the system owner's first name."},
+ {answer:"WORLD",hint:"A place made from ideas, rules, and imagination.",prompt:"What are you building when you create a game universe?"},
+ {answer:"CREATE",hint:"The action behind every project.",prompt:"Code can solve problems. Imagination helps you..."}
+];
+let level=0,attempts=0,unlocked=false;
+const input=document.getElementById("codeInput"),feedback=document.getElementById("gameFeedback"),slots=document.getElementById("codeSlots");
+function render(){document.getElementById("levelLabel").textContent=`LEVEL ${String(level+1).padStart(2,"0")} / 03`;document.getElementById("gamePrompt").textContent=levels[level].prompt;document.getElementById("attemptLabel").textContent=`ATTEMPTS ${attempts}/5`;document.getElementById("gameStatus").textContent=unlocked?"ACCESS GRANTED":"LOCKED DIRECTORY";slots.textContent=levels[level].answer.replace(/./g,"_ ").trim();input.value="";input.disabled=unlocked;document.getElementById("submitCode").disabled=unlocked;document.getElementById("nextLevel").hidden=!unlocked||level===levels.length-1;document.getElementById("submitCode").textContent=unlocked?"UNLOCKED":"RUN ↵"}
+function submit(){if(unlocked)return;const guess=input.value.trim().toUpperCase();if(!guess)return;attempts++;if(guess===levels[level].answer){unlocked=true;feedback.textContent=level===levels.length-1?"ACCESS GRANTED. Hidden message: keep building.":"ACCESS GRANTED. Directory unlocked.";slots.textContent=levels[level].answer.split("").join(" ");}else{feedback.textContent=attempts>=5?"ACCESS DENIED. Reset to try again.":"ACCESS DENIED. Try another phrase.";if(attempts>=5)document.getElementById("submitCode").disabled=true;}renderKeepFeedback();document.getElementById("attemptLabel").textContent=`ATTEMPTS ${attempts}/5`}
+function renderKeepFeedback(){document.getElementById("gameStatus").textContent=unlocked?"ACCESS GRANTED":attempts>=5?"LOCKED — RETRY":"LOCKED DIRECTORY";document.getElementById("nextLevel").hidden=!unlocked||level===levels.length-1}
+document.getElementById("submitCode").addEventListener("click",submit);input.addEventListener("keydown",e=>{if(e.key==="Enter")submit()});document.getElementById("hintButton").addEventListener("click",()=>feedback.textContent="HINT: "+levels[level].hint);document.getElementById("resetGame").addEventListener("click",()=>{attempts=0;unlocked=false;feedback.textContent="Awaiting input...";render()});document.getElementById("nextLevel").addEventListener("click",()=>{if(level<levels.length-1){level++;attempts=0;unlocked=false;feedback.textContent="New directory detected.";render()}});render();
